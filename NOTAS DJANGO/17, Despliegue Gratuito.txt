@@ -78,3 +78,12 @@ en este archivo escribiremos los archivos que no se subiran
 
 git init y para eliminarlo es asi del .git
 git add .
+git commit -m "efed"
+
+crear repo en githun
+pegar en consola git remote add origin git@github.com:junior-0731/Django-Crud.git
+
+ahora si hacer git push origin master
+
+
+ahora en render 

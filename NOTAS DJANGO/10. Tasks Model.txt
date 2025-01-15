@@ -1,0 +1,21 @@
+En la seccion anterior hemos creado un archivo que muestra tan solo un h1
+
+Debemos de podeer crear tareas y guardarlas en la base de datos sqlite3
+
+Django tiene un modulo llamado form el cual permite comunicarse, realizar consultas con la base de datos, utilizando codigo de python, claro esta que podemos crear nuestro propio codigo sql, pero si vamos a realizar operaciones basicas este modulo es mas que suficiente
+
+1. Decirle a Django como se va crear la base de datos: task-->models.py--> crear clase
+
+en models importar django.contrib.auth.models. import User, para poder relacionar las tareas con el usuario
+
+y en la foreignkey se coloca user = models.Foreignkey(User)
+
+si sesione desea agregar un campo de solo lectura se debe crear una clase en el panel de admin
+
+class TaskAdmin(admin.modelAdmin):
+    readonly_fields = ("created",)
+
+lo anterior lo que hace es permitir ver la hora, pero no modificarla
+
+ahoa esta clase (TaskAdmin), se agregara a admin.site, de la siguiente manera.
+register(Task, TaskAdmin)

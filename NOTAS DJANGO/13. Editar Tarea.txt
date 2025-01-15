@@ -1,0 +1,17 @@
+Este es demaciado facil, ya que debemos de llamar el formulario de la tarea, y llenarlo con los datos del formulario de la tarea que el usuario desea modificarl
+ejm: form = Taskform(instace=Task) ---modificable> de esta manera estariamos mostrando el formulario 
+
+ya que como yo lo hice, debo de agregar los datos manualmente, pero si lo hubiese hecho de esta manera ---> class CreateNewTask(ModelForm):
+    class Meta:
+        model = Task
+        fields=['tittle','description','important']  se podria hacer asi---> form = createNewTask(instace=task)
+pero de la manera como lo hice yo, debe de ser manualmente de la siguiente manera ---> form = CreateNewTask(initial={'tittle': task.tittle, 'description': task.description})
+* retornar y mostrar la tarea en formulario ---> return render(request, 'task_details.html', {'form': form, 'task': task})
+ahora si es por el metodo POST
+escucharemos y almacenaremos por medio del request ----> form = CreateNewTask(request.POST)
+
+ahora para verificar si el valido lo ingresado se controla asi     if form.is_valid():
+
+ahora para actualizar los datos ingresados por los datos ya existentes utilizaremos .cleaned_data para ir actualizando cada campo, recuerda que esta es de la manera manual, de la manera que te dije ahora es mas diferente y mas optimo --->   task.tittle = form.cleaned_data['tittle'], y asi con cada campo
+
+y por metodos de seguridad debemos de colocar lo siguiente para que un usuario no pueda editar las tareas de los demas---->     task = get_object_or_404(Task, id=idtask, user=request.user)  # Obtener la tarea o devolver 404 si no existe

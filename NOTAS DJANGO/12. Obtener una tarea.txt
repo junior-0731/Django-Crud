@@ -1,0 +1,9 @@
+ Crear una nueva vista en templates llamada task_details.html, heredar de layouts menu nav, agregar el block content y agregar h1 tasks detail
+
+ agregar la funcion que renderiza, en el apartado views, y agregar la ruta, la cual debera como parametro el id de la tareas, lo mismo en urls, agregar que idtask ira seguido de task
+
+
+ ahora en la funcion taskDetails podemos consultar la tarea por medio de este id, de la siguiente manera---> Task.objects.get(pk=idtask)
+
+ importaremos get_list_or_404 desde shorcuts
+ y lo utilizamos asi task = get_list_or_404(id=idtask), esto muestra una pagina 404, para que el servidor no se caiga complemente

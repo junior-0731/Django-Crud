@@ -1,0 +1,12 @@
+1. Utilizar render para redirecccionar al archivo html
+render(request, 'nombre_archivo.html')
+
+2. Crear formulario login, pero django ya permite esa funcionalidad, (from django.contrib.auth.forms import UserCreationForm)
+
+3. almacenaremos UserCreationForm en una variable llamada formulario, y esto lo pasamos como parametro, seria de la siguiente manera {'form':UserCreationForm}
+
+4. Ahora en el archivo html crearemos un formulario, form, y dentro de este llamamos al parametro form, utilizando la sintaxis jinja ---> {{form}}
+
+5. Ahora al formulario le daremos como action la ruta, y method POST
+
+6. Añadir tockend {% csrf_token %}

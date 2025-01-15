@@ -1,0 +1,10 @@
+Crear un nuevo p el cual ofrezca la opcion de completar tarea, ademas en url debemos añadir el path, y que funcion de vwes ejecutara, ademas agregar el nombre
+* en la funcion de views, filtraremos la tarea por medio de su id, y el user, luego modificamos el atributo datecompleted, de la siguiente manera---> task.datecompleted= timezone.now()
+y guardaremos task---> task.save()
+
+
+
+
+
+Para eliminar, hacemos lo que es la vista y la url igual, pero ahora es delete,
+y simplemente de la tarea que se encontro agregarle .delete() y direccionarlo

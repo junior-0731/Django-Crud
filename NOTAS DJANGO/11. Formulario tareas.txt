@@ -1,0 +1,2 @@
+Importamos lo siguientedjangp.forms import ModelForm, 
+Igualmente importaremos a Task, esto nos permite instanciar una clase Meta y aca pasaremos el modelo con los atributos que queremos que este en el formulario

@@ -1,0 +1,41 @@
+{% extends 'layouts/menu_nav.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<>
+    {% block content %}
+    <h1>WELCOME TO HOME</h1>
+    {% if not user.is_authenticated %}
+    <h3>Inicia Sesion o Registrare Para poder Crear y visualizar tu lista de tareas. Buena Suerte</h3>
+    {% else %}
+    <h3>Bienvenido {{user.username}}</h3>
+    {% endif %}
+
+    <main class="container py-5">
+        <section class="card card-body">
+            <h1 class="display-1 text-center">Django App</h1>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quia id, impedit animi dicta eveniet sit incidunt a molestiae quam itaque temporibus quaerat necessitatibus pariatur iste iusto sed totam magni.
+            Commodi eaque optio provident nulla at aliquam nihil quasi ex harum doloremque earum ad, deserunt alias fugiat autem aliquid incidunt fugit sit officia et dolorem illum eius! Deserunt, numquam quasi?
+            Similique voluptate quos harum accusamus velit labore quia sit iure laborum numquam nemo exercitationem obcaecati odit sint, placeat assumenda ipsa temporibus a voluptatibus accusantium? Suscipit eum dolorem numquam veritatis pariatur.
+            Quaerat praesentium dolor, vero modi earum vitae exercitationem eligendi delectus fuga corrupti, nam facere voluptas eius rem expedita iste, aspernatur numquam ex ratione quasi libero! Optio labore neque est provident!
+            Distinctio aperiam vel adipisci officia dignissimos accusamus repudiandae, repellendus, voluptatibus temporibus impedit autem commodi earum nisi laboriosam. Eaque iure, aut, distinctio officia sunt ullam tempora ipsa reiciendis consequuntur debitis earum.
+            <div class="text-center">
+                <a class="btn btn-secondary" href="{% url 'signin' %}">
+                    Signin
+                </a>
+                <a class="btn btn-dark" href="{% url 'signup' %}">
+                    Signup
+                </a>
+            </div>
+        
+        </section>
+    </main>
+
+    {% endblock %}
+    
+</body>
+</html>

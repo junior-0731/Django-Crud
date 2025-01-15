@@ -1,0 +1,6 @@
+1. Cada proyecto esta dividido en seccionas, las cuales son carpetas que tienen el nombre de aplicación
+
+2. Crear Aplicacion: python manage.py startapp tasks
+
+4. En la carpeta django crud, agrego la nueva apicacion tasks a INSTALLED_APPS, de esta forma la estaria añadida mi aplicacion a el proyecto
+

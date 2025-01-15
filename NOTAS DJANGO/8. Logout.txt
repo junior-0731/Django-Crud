@@ -1,0 +1,13 @@
+Ahora crearemos un archivo logout que el usuario podra ver cuando se encuentre ya registrado. con una condicional en sintaxis jinja
+        {% if user.is_authenticated %}
+                <li><a href="{% url 'signup' %}">log-up</a></li>
+                    
+        {% endif %}
+
+esta sintaxis quiere decir que si el usuario esta registrado se le habilitara esta opcion
+
+ademas de login tenemos otro metodo llamdo logout, que es para cerrar sesion, crearemos una vista para esto
+
+se colocaria logout(request)
+y retornamos un redirect a home
+crearemos la ruta de logout

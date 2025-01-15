@@ -1,0 +1,12 @@
+Crear plantilla que todas las paginas puedan compartir,
+
+en templates crearemos una carpeta llamda layouts, donde almacenaremos los archivos html que seran plantillas
+
+deberemos colocar en estas platillas la siguiente sintaxis jinja     {% block content %}{% endblock %}
+
+Y por ejemplo para heredar la plantilla desde el archivo html home, colocamos lass siguinete sintaxis, al inicio {% extends ''base.html %}
+
+ahora el contenido de home ira dentro de esta sintaxis 
+    {% block content %}
+    CoNtEnIdO
+    {% endblock %}

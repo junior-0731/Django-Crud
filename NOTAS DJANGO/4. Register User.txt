@@ -1,0 +1,16 @@
+1. Crear Home.html
+2. Desde views renderizar el archivo home.html
+
+* Como recibir los datos que el usuario digite en el formulario
+    1. Entender que cuando clickee en el boton se enviaran los datos a la ruta/signup/
+    2. Desde la funcion signUp de Views.py, añadimos una condicional, que si es por el metodo GET se enviara el formulario, y si es metodo POST se obtendran los datos 
+
+
+Verificar si password1 y password2 sean correctos, 
+si son correctos trataremos de guardarlos, tebemos un modelo que nos da django --> From fjango.contrib.auth.models import User, utilizaremos la clase User ---> user= User.objects.create_user(username=request.POST["username"],password=request.POST['password1']), hasta el momento, esto no guarda nada, simplemente crea el usuario con su password, ademas cifra la contraseña
+    * con user.save()---> se guarda en la base de datoos
+
+Debemos de tener en cuenta el try y except para que no halla un posible error al guardar los datos, ya que la base de datos tiene sus propias validaciones
+
+
+En caso de que no coincidan, utilizaremos el metodo http.Response, para enviarle un texto

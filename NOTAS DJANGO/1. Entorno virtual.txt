@@ -1,0 +1,7 @@
+1. Desde el cmd me ubico en la carpeta
+2. verifico la version de python ---> python --version
+3. Crear el entoro virtual---> py -m venv venv
+4. Activar el entorno,seleccionar venv en python interpreter
+5. Pip install django
+6. Al instalarlo me habilita django-admin --version
+7. Crear proyecto ----> django-admin startproject djangocrud

@@ -1,0 +1,19 @@
+De momento solo le decimos al usuario que se registro exitosamente
+Ahora debemos de crearle una vista donde el pueda crear tareas
+
+Crear en templates un archivo llamado task.html
+
+Utilizar el metodo redirect para redireccionar al usuario al apartado tasks una vez se halla registrado
+
+Generar una seccion que es una cookie que almacena datos del usuario
+
+para crear una cookie ---> no se tiene que crear desde 0, django me da una biblioteca ( from django.contrib.auth import login)
+
+Iria Luego de guardar en la base de datos
+---> login(request,user)
+
+Luego si registramos un usuario, aparecen unos datos en los cookies, esto con el fin de poder mostrar info del usuario en la pagina, realizar modificaciones etc
+
+
+por ultimo no utilizaremos try except solo, si no que le añadiremos a except IntegrityError, hace lo mismo pero es para considerar excepciones dedicadas a un error en especifico
+importaremos from django.db import IntegrityError

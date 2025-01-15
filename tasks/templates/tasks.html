@@ -1,0 +1,198 @@
+{% extends 'layouts/menu_nav.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <h1>WELCOME TO THE TASKS</h1>
+    {% if not tareas %}
+    <h2>{{user.username}} Aun no has creado Tareas </h2>
+    <form action="{% url 'tasks_unico' user.id %}" method="POST">
+        <h2 class="text-center bg-light rounded">Create new Task</h2>
+        {{error}}
+        {% csrf_token %}
+        {{createtask.as_p}}
+        <button class="btn btn-primary">
+            Create
+        </button>
+    </form>
+    {% else %}
+    <div class="container_principal">
+        <form action="{% url 'tasks_unico' user.id %}" method="POST">
+            <h2 class="text-center bg-light rounded">Create new Task</h2>
+            {{error}}
+            {% csrf_token %}
+            {{createtask.as_p}}
+            <button class="btn btn-primary">
+                Create
+            </button>
+        </form>
+        <div class="container_tasks">
+            {% for i in tareas %}
+            <div class="tasks">
+                <p class="tittle">{{i.tittle}}</p>
+                <p class="description">{{i.description}}</p>
+                <p>{{i.created}}</p>
+                <p>{{i.datecompleted}}</p>
+                {% if i.important == True %}
+                <p>Importante</p>
+                {% endif %}
+                <div class="opciones">
+                    <p class="opcion delete"><a href="{% url 'task_delete' i.id %}">Delete
+
+                    </a></p>
+                    <p class="opcion modify"><a href="{% url 'task_details' i.id %}">Modificar</a></p>
+                    <p class="opcion complete"><a href="{% url 'task_complete' i.id %}">Complete</a></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+    <style>
+        body{
+        }
+        a{
+            text-decoration: none;
+            color: #ffe;
+        }
+        b{
+            font-size: xx-large;
+            font-style: inherit;
+            background-color: rgb(38, 105, 105);
+         /*    color: aliceblue; */
+            color: black;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        .container_principal{
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: left;
+            padding: 3px;
+        }
+        .container_principal form{
+            position: absolute;
+            color: black;
+            position: fixed;
+            margin-left: 957px;
+            margin-top: -36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 18px;
+            padding-bottom: 29px;
+            border-bottom: 2px solid white;
+            border-radius: 5px;
+            gap: 10px;
+        }
+        .container_tasks{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            justify-content:space-evenly;
+            background-color: #79776a;
+        }
+        .tasks{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-color: antiquewhite;
+            border: 3px solid black;
+            margin: 6px;
+            padding: 40px 60px;
+        }
+        form p{
+            display: flex;
+            flex-direction: column;
+            color: black;
+        }
+        form{
+            color: black;
+            position: static;
+            margin-left: 960px;
+            margin-top: -80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 18px;
+            padding-bottom: 29px;
+            border-bottom: 2px solid white;
+            border-radius: 5px;
+            gap: 10px;
+            background-color: #a1c5bf;
+        }
+        .input{
+            color:#111;
+            border-radius: 5px;
+            padding: 10px;
+            border-top:3px solid white;
+            background-color: transparent;
+            
+        }
+        .input_important{
+            position: relative;
+            accent-color: #3976a1;
+            width: 33px;
+            height: 23px;
+            cursor: pointer;
+            margin-top: -22px;
+            margin-left: 90px;
+        }
+        .input::placeholder{
+            color: #79776a;
+            letter-spacing: 2px;
+        }
+        label{
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .tittle{
+            font-size:28px;
+            font-weight: bold;
+            background-color: #005048;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .opciones{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .opcion{
+            border-radius: 4px;
+            padding: 3px;
+            letter-spacing: 2px;
+        }
+        .delete{
+            background-color:rgb(219, 60, 60) ;
+        }
+        .modify{
+            
+            background-color:#48e ;
+        }
+        .complete{
+            background-color: #005048;
+        }
+        button{
+            background-color: #4d5f6c;
+            color: #ffe;
+            border: 2px solid wheat;
+            border-radius: 12px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+    {% endblock %}
+</body>
+</html>

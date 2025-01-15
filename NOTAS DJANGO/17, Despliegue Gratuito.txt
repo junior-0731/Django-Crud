@@ -1,0 +1,80 @@
+Se estara utilizando un servicio llamado render.com
+
+NEcesitamos configurar el proyecto para que fyuncione en produccion
+
+
+Inggresar a djangocrud-->settings.py---> secret_Key
+
+importaremos alli os ---> import os
+esta llave debe de ser cambiada por el codigo suministrado en la documentacion os.environ.get('SECRET_KEY', default='your secret key')
+
+Ahora en DEBUG debemos de colocar false, ya que no queremos que se muestren las vulnerabiulidades con las que contamos
+se colocaria de sa siguiente manera DEBUG='RENDER' not in os.environ
+
+
+Luego crearemos 
+    RENDER_EXTERNAL_HOSTNAME= os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+    if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+    lo que estamos haciendo es que si render existe, llenaremos ALLOWED_HOSTS con la ip suministrada en RENDER_EXTERNAL_HOSTNAME
+
+
+* Instalar modulo pip install dj-database-url
+*importaremos dj_database_url
+*Instalar modulo de instalacion de postgres pip install psycopg2-binary
+
+para utilizarlo en DATABASES, nosotros colocaremos o utilizaremos este modulo
+
+'default':dj_database_url.config(
+        default='postgresql://postgres:postgres@localhost/postgres',conn_max_age=600
+    )
+Config simplemente sera una alternativa para poder conectarse
+
+Controlar la parte de STATIC
+instalar modulo pip install whitenoise[brotli]
+
+ahora en el MIDDLEWARE, y añade esta dependecnia 'whitenoise.middleware.WhiteNoiseMiddleware',
+
+Ahora en static urls podemos establecer una condicional
+if not DEBUG:    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+en caso de que DEBUG no este en TRUE, se aplicara un archivo staticfiles, este se genera de la siguiente manera ----> python manage.py collectstatic 
+
+ejecutar archivo build.sh, este esta relacionado con base a script, y lo permite hacer es crear un script que se ejecutara en linux y va ejecutar los comandos
+
+crearemos build.sh y pegamos este contenido #!/usr/bin/env bash
+# Exit on error
+set -o errexit
+
+# Modify this line as needed for your package manager (pip, poetry, etc.)
+pip install -r requirements.txt
+
+# Convert static asset files
+python manage.py collectstatic --no-input
+
+# Apply any outstanding database migrations
+python manage.py migrate
+
+ahora con el gibash ejecutaremos esto chmod a+x build.sh
+pip install gunicorn
+
+ejecutar pip freeze > requirements.txt, qui se encuntran todos los modulos que necesita el proyecto para funcionar
+
+Vamos a commitear
+
+en consola escribiremos 
+
+
+añadir un .gitignore
+en este archivo escribiremos los archivos que no se subiran
+    *db.sqlite3
+    *venv
+    *__pycache__
+
+git init y para eliminarlo es asi del .git
+git add .

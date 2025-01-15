@@ -1,0 +1,12 @@
+Darle al usuario de autenticarse con los mismos datos ( iniciar sesion)
+
+Asi como tenemos UsercreationForm. tenemos otra llamada AuthenticationForm
+
+debemos de comprobar de pa db se el usuari0o existe, si la contraseña es valida etc
+Django permite utilizar otro metodo llamado authenticate, que esta junto con login y logout
+
+se utilizaria asi: 
+--->user = authenticate(request, username= request.POST['username'], password= request.POST['password'])
+luego con una condicional colocalos if user is none es decir si el usuario no existe le retornaremos la misma pagina pero con un error que le indique que tiene mal
+
+si por el contrario (else) es correcto, guarda la sesion con esto -->     login(request,user) y lo redirije a la pagina tasks con return redirect(request, 'tasks')

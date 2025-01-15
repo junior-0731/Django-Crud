@@ -1,0 +1,20 @@
+Crear nueva ruta en urls
+
+Crear enn Views una funcin la cual muestre o pase las tareas completadas al usuario
+
+
+
+PROTEGER RUTAS
+:
+importar el siguiente decorador: from django.contrib.auth.decorators import login_required
+este decorador de coloca encima de aquellas funciones que requieran estar logueados antes
+
+
+Cuando se intente ingresar a una de estar urls que estan protegidas, sin estar logueados, automaticamente lo va querer redireccionar al login
+entonces en settings ---> STATIC_URL agregar propiedad nueva abajo de STATIC_URL
+
+ejm---> LOGIN_URL ='/signin'
+
+
+
+
